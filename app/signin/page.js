@@ -29,8 +29,11 @@ export default function Home() {
           if (res.data.statusCode === 500) {
             toast.error(res.data.message)
           } else {
-            console.log(res)
-            toast.success(res.data.message)
+            if (res.data.AuthenticationResult) {
+              localStorage.setItem('user', JSON.stringify(res.data.AuthenticationResult))
+              toast.success('Sign In successfully')
+              router.push('/dashboard')
+            }
           }
         })
         .catch((err) => {
@@ -74,7 +77,7 @@ export default function Home() {
             toast.error(res.data.message)
           } else {
             toast.success(res.data.message)
-            router.push('/signin')
+            setForget(true)
           }
         })
         .catch((err) => {
