@@ -22,16 +22,33 @@ import { isExpired, decodeToken } from 'react-jwt'
 
 export default function Home() {
   const [user, setUser] = useState({})
+  const [loading, setLoading] = useState(false)
   const [infoState, setInfoState] = useState(false)
   const [passState, setPassState] = useState(false)
   const [info, setInfo] = useState({
     name: '',
     address: '',
     phone: '',
+    birthday: '',
+    avatar: '',
   })
 
   const handleUpdateInfo = () => {
-    axios.post()
+    setLoading(true)
+    const userInfo = {
+      email: user.email,
+      info,
+    }
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API}/users/create`, userInfo)
+      .then((res) => {
+        console.log('res', res)
+        setLoading(false)
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+      })
   }
 
   useEffect(() => {
@@ -103,6 +120,16 @@ export default function Home() {
                   }}
                 />
                 <Input
+                  label='Birthday'
+                  type='date'
+                  size='lg'
+                  value={info.phone}
+                  onChange={(e) => {
+                    setInfo({ ...info, birthday: e.target.value })
+                    setInfoState(true)
+                  }}
+                />
+                <Input
                   label='Address'
                   size='lg'
                   value={info.address}
@@ -121,7 +148,7 @@ export default function Home() {
                       color='red'
                       className='w-full'
                       onClick={() => {
-                        setInfo({ name: '', address: '', phone: '' })
+                        setInfo({ name: '', address: '', phone: '', birthday: '', avatar: '' })
                         setInfoState(false)
                       }}
                     >
