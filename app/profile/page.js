@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import {
   Card,
   CardHeader,
@@ -15,52 +15,52 @@ import {
   Input,
   Button,
   IconButton,
-} from '@material-tailwind/react'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { isExpired, decodeToken } from 'react-jwt'
+} from '@material-tailwind/react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { isExpired, decodeToken } from 'react-jwt';
 
 export default function Home() {
-  const [user, setUser] = useState({})
-  const [loading, setLoading] = useState(false)
-  const [infoState, setInfoState] = useState(false)
-  const [passState, setPassState] = useState(false)
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [infoState, setInfoState] = useState(false);
+  const [passState, setPassState] = useState(false);
   const [info, setInfo] = useState({
     name: '',
     address: '',
     phone: '',
     birthday: '',
     avatar: '',
-  })
+  });
 
   const handleUpdateInfo = () => {
-    setLoading(true)
+    setLoading(true);
     const userInfo = {
       email: user.email,
       info,
-    }
+    };
     axios
       .post(`${process.env.NEXT_PUBLIC_API}/users/create`, userInfo)
       .then((res) => {
-        console.log('res', res)
-        setLoading(false)
+        console.log('res', res);
+        setLoading(false);
       })
       .catch((err) => {
-        console.log(err)
-        setLoading(false)
-      })
-  }
+        console.log(err);
+        setLoading(false);
+      });
+  };
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('user'))
-    setUser(decodeToken(token?.IdToken))
-  }, [])
+    const token = JSON.parse(localStorage.getItem('user'));
+    setUser(decodeToken(token?.IdToken));
+  }, []);
 
   return (
     <div className='flex gap-9'>
       <Card className='w-96'>
-        <CardHeader floated={false} className='h-80'>
-          <Avatar />
+        <CardHeader floated={false} className='h-80 flex justify-center align-center'>
+          <Avatar src='avatar.png' className='w-[300px] h-[300px]' />
         </CardHeader>
         <CardBody className='text-center'>
           <Typography variant='h4' color='blue-gray' className='mb-2'>
@@ -106,8 +106,8 @@ export default function Home() {
                   size='lg'
                   value={info.name}
                   onChange={(e) => {
-                    setInfo({ ...info, name: e.target.value })
-                    setInfoState(true)
+                    setInfo({ ...info, name: e.target.value });
+                    setInfoState(true);
                   }}
                 />
                 <Input
@@ -115,8 +115,8 @@ export default function Home() {
                   size='lg'
                   value={info.phone}
                   onChange={(e) => {
-                    setInfo({ ...info, phone: e.target.value })
-                    setInfoState(true)
+                    setInfo({ ...info, phone: e.target.value });
+                    setInfoState(true);
                   }}
                 />
                 <Input
@@ -125,8 +125,8 @@ export default function Home() {
                   size='lg'
                   value={info.phone}
                   onChange={(e) => {
-                    setInfo({ ...info, birthday: e.target.value })
-                    setInfoState(true)
+                    setInfo({ ...info, birthday: e.target.value });
+                    setInfoState(true);
                   }}
                 />
                 <Input
@@ -134,8 +134,8 @@ export default function Home() {
                   size='lg'
                   value={info.address}
                   onChange={(e) => {
-                    setInfo({ ...info, address: e.target.value })
-                    setInfoState(true)
+                    setInfo({ ...info, address: e.target.value });
+                    setInfoState(true);
                   }}
                 />
                 <div className='flex gap-4 w-full'>
@@ -148,8 +148,8 @@ export default function Home() {
                       color='red'
                       className='w-full'
                       onClick={() => {
-                        setInfo({ name: '', address: '', phone: '', birthday: '', avatar: '' })
-                        setInfoState(false)
+                        setInfo({ name: '', address: '', phone: '', birthday: '', avatar: '' });
+                        setInfoState(false);
                       }}
                     >
                       Cancel
@@ -173,7 +173,7 @@ export default function Home() {
                       color='red'
                       className='w-full'
                       onClick={() => {
-                        setPassState(false)
+                        setPassState(false);
                       }}
                     >
                       Cancel
@@ -186,5 +186,5 @@ export default function Home() {
         </Tabs>
       </Card>
     </div>
-  )
+  );
 }
