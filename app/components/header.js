@@ -60,6 +60,9 @@ export function Header() {
                     <MenuItem>
                       <Link href='weather'>Today's weather</Link>
                     </MenuItem>
+                    <MenuItem>
+                      <Link href='sports'>Sports News</Link>
+                    </MenuItem>
                   </MenuList>
                 </Menu>
               </div>

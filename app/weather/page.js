@@ -69,9 +69,8 @@ export default function Weather() {
           .catch((err) => {
             console.log(err);
           });
-        //api.weatherapi.com/v1/forecast.json?key=5e81cc9a89754221b8854532231110&q=10.99835602, 77.01502627&days=7&aqi=yes&alerts=yes
 
-        https: await axios
+        await axios
           .get(
             `${process.env.NEXT_PUBLIC_WEATHER_API}/forecast.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&q=${coords?.latitude},${coords?.longitude}&days=7&aqi=yes&alerts=yes`
           )
