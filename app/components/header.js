@@ -119,7 +119,7 @@ export function Header() {
               </IconButton>
             </div>
           </div>
-          <MobileNav open={openNav}>
+          {/* <MobileNav open={openNav}>
             <div className='flex items-center gap-x-1'>
               {!user ? (
                 <>
@@ -136,7 +136,7 @@ export function Header() {
                 </Button>
               )}
             </div>
-          </MobileNav>
+          </MobileNav> */}
         </Navbar>
       </div>
     </>
