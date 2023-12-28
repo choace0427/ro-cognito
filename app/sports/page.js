@@ -97,35 +97,34 @@ export default function Home() {
             {sportData && type ? (
               sportData[type].map((item) => {
                 return (
-                  //   <Card className=' p-6'>
-                  //     <div className='flex gap-3 items-center'>
-                  //       <Avatar src={`${type}.svg`} className='w-[90px] h-[90px]' />
-                  //       <div>
-                  //         <div className='flex gap-2 items-center'>
-                  //           <Typography variant='h6'> Country:</Typography>
-                  //           <Typography variant='h5'>{item.country}</Typography>
-                  //         </div>
-                  //         <div className='flex gap-2 items-center'>
-                  //           <Typography variant='h6'> Tournament:</Typography>
-                  //           <Typography variant='h5'>{item.tournament}</Typography>
-                  //         </div>
-                  //         <div className='flex gap-3 items-center'>
-                  //           <Typography variant='h6'>Stadium:</Typography>
-                  //           <Typography variant='h5'>{item.stadium}</Typography>
-                  //         </div>
-                  //       </div>
-                  //     </div>
-                  //     <div className='flex gap-1 items-center my-3'>
-                  //       <Typography variant='h5'>{item.match.split('vs')[0]}</Typography>
-                  //       <Avatar src='vs.svg' className='w-[30px] h-[30px]' />
-                  //       <Typography variant='h5'>{item.match.split('vs')[1]}</Typography>
-                  //     </div>
-                  //     <div className='flex gap-1 items-center'>
-                  //       <Typography variant='h6'>Start Date:</Typography>
-                  //       <Typography variant='h5'>{item.start}</Typography>
-                  //     </div>
-                  //   </Card>
-                  <div className='w-[500px] h-[200px]'>123123</div>
+                  <Card className=' p-6'>
+                    <div className='flex gap-3 items-center'>
+                      <Avatar src={`${type}.svg`} className='w-[90px] h-[90px]' />
+                      <div>
+                        <div className='flex gap-2 items-center'>
+                          <Typography variant='h6'> Country:</Typography>
+                          <Typography variant='h5'>{item.country}</Typography>
+                        </div>
+                        <div className='flex gap-2 items-center'>
+                          <Typography variant='h6'> Tournament:</Typography>
+                          <Typography variant='h5'>{item.tournament}</Typography>
+                        </div>
+                        <div className='flex gap-3 items-center'>
+                          <Typography variant='h6'>Stadium:</Typography>
+                          <Typography variant='h5'>{item.stadium}</Typography>
+                        </div>
+                      </div>
+                    </div>
+                    <div className='flex gap-1 items-center my-3'>
+                      <Typography variant='h5'>{item.match.split('vs')[0]}</Typography>
+                      <Avatar src='vs.svg' className='w-[30px] h-[30px]' />
+                      <Typography variant='h5'>{item.match.split('vs')[1]}</Typography>
+                    </div>
+                    <div className='flex gap-1 items-center'>
+                      <Typography variant='h6'>Start Date:</Typography>
+                      <Typography variant='h5'>{item.start}</Typography>
+                    </div>
+                  </Card>
                 );
               })
             ) : (
