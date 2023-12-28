@@ -14,11 +14,10 @@ import {
   TabPanel,
   Input,
   Button,
-  IconButton,
 } from '@material-tailwind/react';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { isExpired, decodeToken } from 'react-jwt';
+import { decodeToken } from 'react-jwt';
 
 export default function Home() {
   const [user, setUser] = useState({});
@@ -33,6 +32,13 @@ export default function Home() {
     avatar: '',
   });
 
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('user'));
+    if (token) {
+      setUser(decodeToken(token?.IdToken));
+    }
+  }, []);
+
   const handleUpdateInfo = () => {
     setLoading(true);
     const userInfo = {
@@ -42,19 +48,12 @@ export default function Home() {
     axios
       .post(`${process.env.NEXT_PUBLIC_API}/users/create`, userInfo)
       .then((res) => {
-        console.log('res', res);
         setLoading(false);
       })
       .catch((err) => {
-        console.log(err);
         setLoading(false);
       });
   };
-
-  useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('user'));
-    setUser(decodeToken(token?.IdToken));
-  }, []);
 
   return (
     <div className='flex gap-9'>
@@ -107,7 +106,7 @@ export default function Home() {
                   value={info.name}
                   onChange={(e) => {
                     setInfo({ ...info, name: e.target.value });
-                    setInfoState(true);
+                    // setInfoState(true);
                   }}
                 />
                 <Input
@@ -116,7 +115,7 @@ export default function Home() {
                   value={info.phone}
                   onChange={(e) => {
                     setInfo({ ...info, phone: e.target.value });
-                    setInfoState(true);
+                    // setInfoState(true);
                   }}
                 />
                 <Input
@@ -126,7 +125,7 @@ export default function Home() {
                   value={info.phone}
                   onChange={(e) => {
                     setInfo({ ...info, birthday: e.target.value });
-                    setInfoState(true);
+                    // setInfoState(true);
                   }}
                 />
                 <Input
@@ -135,11 +134,11 @@ export default function Home() {
                   value={info.address}
                   onChange={(e) => {
                     setInfo({ ...info, address: e.target.value });
-                    setInfoState(true);
+                    // setInfoState(true);
                   }}
                 />
                 <div className='flex gap-4 w-full'>
-                  <Button variant='outlined' className='w-full' loading={false} onClick={handleUpdateInfo}>
+                  <Button variant='outlined' className='w-full' loading={false} onClick={() => handleUpdateInfo()}>
                     Update
                   </Button>
                   {infoState && (
